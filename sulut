@@ -29,3 +29,41 @@ async function respondToIssues() {
 respondToIssues().catch(error => {
     console.error(error);
 });
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Écran d'accueil</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bienvenue sur le Bot GitHub</h1>
+    <button onclick="startBot()">Démarrer le bot</button>
+
+    <script>
+        function startBot() {
+            alert("Bot en cours d'exécution !");
+            // Ajoutez ici le code pour démarrer le bot
+        }
+    </script>
+</body>
+</html>
