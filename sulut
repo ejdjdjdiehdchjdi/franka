@@ -1,0 +1,31 @@
+const { Octokit } = require("@octokit/rest");
+
+const octokit = new Octokit({ auth: process.env.GITHUB_TOKEN });
+
+async function respondToIssues() {
+    const { data: issues } = await octokit.issues.listForRepo({
+        owner: 'votre-utilisateur',
+        repo: 'mon-bot',
+    });
+
+    for (const issue of issues) {
+        const { data: comments } = await octokit.issues.listComments({
+            owner: 'votre-utilisateur',
+            repo: 'mon-bot',
+            issue_number: issue.number,
+        });
+
+        if (comments.length === 0) {
+            await octokit.issues.createComment({
+                owner: 'votre-utilisateur',
+                repo: 'mon-bot',
+                issue_number: issue.number,
+                body: "Merci pour votre question ! Comment puis-je vous aider ?",
+            });
+        }
+    }
+}
+
+respondToIssues().catch(error => {
+    console.error(error);
+});
